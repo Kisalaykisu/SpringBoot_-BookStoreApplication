@@ -7,6 +7,7 @@ import com.example.springboot_bookstoreapplication.model.UserDetails;
 import com.example.springboot_bookstoreapplication.repository.UserRepo;
 import com.example.springboot_bookstoreapplication.utility.EmailSenderService;
 import com.example.springboot_bookstoreapplication.utility.TokenUtility;
+
 import com.example.springboot_bookstoreapplication.model.UserDetails;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +62,7 @@ public class UserService implements IUserService {
                 return "Login Successful!!";
             } else
                 emailSender.sendEmail(userDetails.get().getEmailAddress(), "Login", "You have entered Invalid password!");
-                throw new UserException("Login Failed, Wrong Password!!!");
+            throw new UserException("Login Failed, Wrong Password!!!");
         }else
             throw new UserException("Login Failed, Entered wrong email or password!!!");
     }
@@ -152,5 +153,4 @@ public class UserService implements IUserService {
             throw new UserException("Error: Cannot find User ID " + id);
         return userDetails;
     }
-
 }
